@@ -7,16 +7,20 @@ function WelcomeScreen({ onJoin, roomId }) {
   const [serverInfo, setServerInfo] = useState(null)
 
   useEffect(() => {
-    // Buscar informações do servidor (IP e porta)
+    // Buscar IP do servidor (apenas para pegar o IP da rede local)
     fetch('/api/server-info')
       .then(res => res.json())
       .then(data => {
         console.log('Informações do servidor:', data)
-        setServerInfo(data)
+        // Usa o IP do servidor, mas mantém a porta do frontend (5173)
+        setServerInfo({
+          ip: data.ip,
+          port: window.location.port || 5173
+        })
       })
       .catch(err => {
         console.error('Erro ao buscar informações do servidor:', err)
-        // Fallback para o IP atual
+        // Fallback para o IP e porta atual do frontend
         setServerInfo({
           ip: window.location.hostname,
           port: window.location.port || 5173

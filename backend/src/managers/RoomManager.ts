@@ -51,21 +51,18 @@ export class RoomManager {
   }
 
   /**
-   * Envia uma mensagem para todos os clientes de uma sala, exceto o remetente
+   * Envia uma mensagem para todos os clientes de uma sala, incluindo o remetente
    * @param roomId ID da sala
    * @param message Mensagem a ser enviada
-   * @param sender Socket do remetente (será excluído do broadcast)
    */
-  broadcast(roomId: string, message: string, sender: Duplex): void {
+  broadcast(roomId: string, message: string): void {
     const room = this.rooms.get(roomId);
     if (!room) return;
 
     const frame = WebSocketService.encodeFrame(message);
 
     room.forEach((client) => {
-      if (client !== sender) {
-        client.write(frame);
-      }
+      client.write(frame);
     });
   }
 

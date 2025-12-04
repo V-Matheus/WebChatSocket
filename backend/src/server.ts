@@ -1,11 +1,11 @@
 import * as http from "http";
-import * as path from "path";
 import { HttpController } from "./controllers/HttpController";
 import { WebSocketController } from "./controllers/WebSocketController";
+import { NetworkUtils } from "./utils/NetworkUtils";
 
 /**
  * Classe principal do servidor
- * Orquestra os controladores HTTP e WebSocket
+ * Servidor API + WebSocket (não serve arquivos estáticos)
  */
 class Server {
   private server: http.Server;
@@ -16,10 +16,7 @@ class Server {
   constructor(port: number = 3000) {
     this.port = port;
 
-    // Caminho para a pasta frontend (um nível acima de backend)
-    const frontendPath = path.join(__dirname, "..", "..", "frontend");
-
-    this.httpController = new HttpController(frontendPath);
+    this.httpController = new HttpController();
     this.webSocketController = new WebSocketController();
 
     this.server = this.createServer();
@@ -45,15 +42,11 @@ class Server {
    */
   start(): void {
     this.server.listen(this.port, () => {
-      console.log(`🚀 Servidor rodando em http://localhost:${this.port}`);
-      console.log(
-        `📁 Servindo arquivos de: ${path.join(
-          __dirname,
-          "..",
-          "..",
-          "frontend"
-        )}`
-      );
+      const ip = NetworkUtils.getLocalIP();
+      console.log(`🚀 Servidor Backend (API + WebSocket)`);
+      console.log(`   Local:   http://localhost:${this.port}`);
+      console.log(`   Rede:    http://${ip}:${this.port}`);
+      console.log(`   WebSocket: ws://${ip}:${this.port}/ws/{roomId}`);
     });
   }
 

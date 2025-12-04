@@ -3,10 +3,16 @@
   "version": "2.0.0",
   "description": "Sistema de chat em tempo real com WebSocket e QR Code - Refatorado com TypeScript",
   "scripts": {
+    "install": "npm run install:backend && npm run install:frontend",
     "install:backend": "cd backend && npm install",
-    "build": "cd backend && npm run build",
+    "install:frontend": "cd frontend && npm install",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
     "start": "cd backend && npm start",
-    "dev": "cd backend && npm run dev"
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "echo 'Execute npm run dev:backend e npm run dev:frontend em terminais separados'"
   },
   "keywords": [
     "websocket",

@@ -88,7 +88,7 @@ export class WebSocketController {
     try {
       const message = WebSocketService.decodeFrame(buffer);
       if (message) {
-        this.roomManager.broadcast(roomId, message, socket);
+        this.roomManager.broadcast(roomId, message);
       }
     } catch (error) {
       console.error("Erro ao decodificar frame:", error);
