@@ -1,0 +1,24 @@
+{
+  "name": "webchat-backend",
+  "version": "1.0.0",
+  "description": "Backend refatorado do WebChat com WebSocket",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node src/server.ts",
+    "watch": "tsc --watch"
+  },
+  "keywords": [
+    "websocket",
+    "chat",
+    "qrcode"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

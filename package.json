@@ -1,13 +1,19 @@
 {
-  "name": "chat",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "name": "webchat-socket",
+  "version": "2.0.0",
+  "description": "Sistema de chat em tempo real com WebSocket e QR Code - Refatorado com TypeScript",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "install:backend": "cd backend && npm install",
+    "build": "cd backend && npm run build",
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev"
   },
-  "keywords": [],
+  "keywords": [
+    "websocket",
+    "chat",
+    "qrcode",
+    "typescript"
+  ],
   "author": "",
   "license": "ISC"
 }
